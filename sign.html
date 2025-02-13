@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Sign Up Form Section -->
+    <div class="form-container">
+        <h2>Create Account</h2>
+        <form id="signup-form" action="#" method="POST">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="name" required placeholder="Enter your full name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Create a password">
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" required
+                placeholder="Confirm your password">
+
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+
+        <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+</body>
+</head>
+<script>
+    unction validateForm() {
+        // Get the values of the fields
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        let errorMessages = "";
+
+        // Validate Full Name
+        if (fullName.trim() === "") {
+            errorMessages += "Full Name is required.<br>";
+        }
+
+        // Validate Email
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        if (!emailPattern.test(email)) {
+            errorMessages += "Please enter a valid email address.<br>";
+        }
+
+        // Validate Password
+        if (password.length < 6) {
+            errorMessages += "Password must be at least 6 characters long.<br>";
+        }
+
+        // Validate Confirm Password
+        if (password !== confirmPassword) {
+            errorMessages += "Passwords do not match.<br>";
+        }
+
+        // Show error messages or success
+        const errorElement = document.getElementById('errorMessages');
+        if (errorMessages !== "") {
+            errorElement.innerHTML = errorMessages;
+            return false; // Prevent form submission
+        } else {
+            alert("Sign Up Successful!");
+            return true; // Allow form submission
+        }
+    }
+</script>
+
+</html>
